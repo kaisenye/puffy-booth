@@ -74,6 +74,8 @@ function App() {
             contrast(1.1) brightness(1.1) saturate(0.8) sepia(0.2) hue-rotate(-5deg) blur(1px)
           `
         };
+      default:
+        return { filter: 'none' };
     }
   };
 
