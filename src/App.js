@@ -203,8 +203,8 @@ function App() {
               <img 
                 key={index} 
                 src={img} 
-                alt={`Preview ${index + 1}`}
-                style={getFlippedStyle(getFilterStyle())}  // Apply both filter and flip
+                alt="Preview"
+                style={getFlippedStyle(getFilterStyle())}
               />
             ))}
           </div>
@@ -257,7 +257,7 @@ function App() {
                   <img 
                     key={index} 
                     src={img} 
-                    alt={`Photo ${index + 1}`}
+                    alt="Strip item"
                     style={getFlippedStyle(getFilterStyle())}
                   />
                 ))}
