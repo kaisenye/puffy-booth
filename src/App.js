@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { Camera } from 'react-camera-pro';
 
 function App() {
