@@ -7,8 +7,17 @@
   align-items: center;
 }
 
-.header {
+.header h1{
   font-family: "Borel", cursive;
+}
+
+.browser-warning {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #6d6565;
+  font-size: 12px;
+  color: #373333;
 }
 
 .camera-container {

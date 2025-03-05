@@ -61,7 +61,7 @@ function App() {
   const getFilterStyle = () => {
     switch(currentFilter) {
       case 'Grayscale':
-        return { filter: 'grayscale(100%) contrast(150%) brightness(120%)' };
+        return { filter: 'grayscale(100%) contrast(90%) brightness(120%)' };
       case 'Sepia':
         return { filter: 'sepia(100%)' };
       case 'Vintage':
@@ -71,20 +71,30 @@ function App() {
       case 'Old':
         return { 
           filter: `
-            contrast(70%)        /* -40% contrast */
-            brightness(135%)      /* -25% highlights */
-            saturate(75%)       /* -45% saturation */
-            sepia(10%)          /* Adds slight warmth */
-            hue-rotate(5deg)  /* Slight color shift */
-            blur(1px)
+            contrast(1.1) brightness(1.1) saturate(0.8) sepia(0.2) hue-rotate(-5deg) blur(1px)
           `
         };
-      default:
-        return {};
     }
   };
 
-  // Add this CSS class helper function
+    // Create a function that returns filter string compatible with canvas
+    const getCanvasFilterString = () => {
+      switch(currentFilter) {
+        case 'Grayscale':
+          return 'grayscale(100%) contrast(150%) brightness(120%)';
+        case 'Sepia':
+          return 'sepia(100%)';
+        case 'Vintage':
+          return 'contrast(110%) brightness(110%) sepia(20%)';
+        case 'Soft':
+          return 'brightness(105%) contrast(95%) saturate(90%)';
+        case 'Old':
+          return 'contrast(1.1) brightness(1.1) saturate(0.8) sepia(0.2) hue-rotate(-5deg) blur(1px);';
+        default:
+          return 'none';
+    }
+  };
+  
   const getFlippedStyle = (filterStyle) => {
     return {
       ...filterStyle,
@@ -132,11 +142,9 @@ function App() {
         img.src = images[i];
         await new Promise(resolve => {
           img.onload = () => {
-            // Apply the filter to the canvas context
-            const filterStyle = getFilterStyle();
-            if (filterStyle.filter) {
-              ctx.filter = filterStyle.filter;
-            }
+            // Apply the filter directly to the canvas context
+            // instead of using CSS filter property
+            ctx.filter = getCanvasFilterString(); // Create this function
             
             // Center the image horizontally
             const x = padding;
@@ -191,6 +199,9 @@ function App() {
     <div className="App">
       <div className="header">
         <h1>PuffyBooth</h1>
+        <p className='browser-warning'>
+          For best experience, please use Chrome, Firefox or Edge browser
+        </p>
       </div>
 
       <div className="camera-container">
